@@ -8,7 +8,7 @@ public class Conjured extends Item {
 
     public void age() {
         sellIn--;
-        if (sellIn > 0 && quality > 1) {
+        if (sellIn >= 0 && quality > 1) {
             quality = quality - 2;
         } else if (sellIn < 0 && quality > 3) {
             quality = quality - 4;

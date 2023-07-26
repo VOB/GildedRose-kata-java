@@ -107,6 +107,26 @@ class GildedRoseTest {
         assertEquals(50, app.items[0].quality);
         assertEquals(50, app.items[1].quality);
         assertEquals(50, app.items[2].quality);
+    }
 
+    @Test
+    void verifyQualityOfItemsIsNeverNegative() {
+        Item[] items = new Item[] {
+            new Common("Common greaves", 1, 0),
+            new Common("Common greaves", 1, 1),
+            new Conjured("Conjured hat", 1, 0),
+            new Conjured("Conjured hat", 1, 1),
+            new Conjured("Conjured hat", 1, 2),
+            new Conjured("Conjured hat", -1, 0),
+            new Conjured("Conjured hat", -1, 1),
+            new Conjured("Conjured hat", -1, 2),
+            new Conjured("Conjured hat", -1, 3),
+            new Conjured("Conjured hat", -1, 4)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateItems();
+        for (Item item : app.items) {
+            assertEquals(0, item.quality);
+        }
     }
 }
